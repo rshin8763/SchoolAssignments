@@ -1,0 +1,52 @@
+<script src="has_skill.js"></script>
+
+<div class="navbar navbar-inverse">
+   <div class="navbar-inner">
+     <a class="navbar-brand" href="/">Home</a>
+   </div>
+ </div>
+ <div class="container">
+
+<fieldset>
+<legend> Add an entry :</legend>
+<form>
+
+<div class="form-group">
+<label for= "pid"> Persona:</label>
+<select class="form-control-inline" id="pid">
+</select>
+</div>
+
+<div class="form-group">
+<label for= "sid"> Skill:</label>
+<select class="form-control-inline" id="sid">
+</select>
+</div>
+
+<div class="form-group">
+<label> Level:</label>
+<input type= "number" id="lvl"></input>
+</div>
+
+<input type= "submit" onclick="addEntry()"></input>
+</form>
+</fieldset>
+
+<fieldset>
+<legend> Search skills by Persona:</legend>
+<form>
+<div class="form-group">
+<label for= "pidSearch"> Persona:</label>
+<select class="form-control-inline" id="pidSearch">
+</select>
+</div>
+<input type= "submit" onclick="searchSkills()"></input>
+</form>
+</fieldset>
+
+<h1>{{header}}</h1>
+<table id="myTable" class="table">
+</table>
+<div hidden id="tName">{{tName}}</div>
+</div>
+

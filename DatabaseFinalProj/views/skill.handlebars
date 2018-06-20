@@ -1,0 +1,41 @@
+<script src="skill.js"></script>
+
+<div class="navbar navbar-inverse">
+   <div class="navbar-inner">
+     <a class="navbar-brand" href="/">Home</a>
+   </div>
+ </div>
+ <div class="container">
+
+<fieldset>
+<legend> Add an entry :</legend>
+<form>
+
+<div class="form-group">
+<label> Name:
+<input type= "text" id="name"> </input>
+</label>
+</div>
+
+<div class="form-group">
+<label> Description:
+<input type= "text" id="description"> </input>
+</label>
+</div>
+
+<div class="form-group">
+<label> Cost:
+<input type= "text" id="cost"> </input>
+</label>
+</div>
+
+<input type= "submit" onclick="addEntry()"></input>
+</form>
+</fieldset>
+
+<h1>{{header}}</h1>
+<table id="myTable" class="table">
+</table>
+<div hidden id="tName">{{tName}}</div>
+</div>
+

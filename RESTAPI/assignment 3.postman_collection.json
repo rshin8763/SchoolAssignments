@@ -1,0 +1,1223 @@
+{
+	"info": {
+		"name": "assignment 3",
+		"_postman_id": "89a482c5-bcc6-08d9-3405-b8d276c35d9b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post First Boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "db7fc60b-ddd0-4dee-9330-694eb9c85a43",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Boat Created\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.response.to.have.status(201);",
+							"    pm.environment.set(\"BoatId1\", jsonData.id)",
+							"});",
+							"",
+							"pm.test(\"Created content matches request\", function () {",
+							"    var responseData = pm.response.json();",
+							"    var requestData = JSON.parse(pm.request.body);",
+							"    ",
+							"    console.log(responseData)",
+							"    console.log(requestData)",
+							"    ",
+							"    for(var prop in requestData){",
+							"        if (prop in responseData){",
+							"            pm.expect(requestData[prop]).to.eql(String(responseData[prop]));",
+							"        }",
+							"    }",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Santa Maria\",\n\t\"type\": \"Carrack\",\n\t\"length\": \"12\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post Second Boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7a9b3028-ff66-4a97-8920-81742132ac3b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Boat Created\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.response.to.have.status(201);",
+							"    pm.environment.set(\"BoatId2\", jsonData.id)",
+							"});",
+							"",
+							"pm.test(\"Created content matches request\", function () {",
+							"    var responseData = pm.response.json();",
+							"    var requestData = JSON.parse(pm.request.body);",
+							"    ",
+							"    console.log(responseData)",
+							"    console.log(requestData)",
+							"    ",
+							"    for(var prop in requestData){",
+							"        if (prop in responseData){",
+							"            pm.expect(requestData[prop]).to.eql(String(responseData[prop]));",
+							"        }",
+							"    }",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"SS Anne\",\n\t\"type\": \"Cruiser\",\n\t\"length\": \"20\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post Boat w/ Invalid Length",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e3e10737-79b2-4f7d-b19d-7f890168f918",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Boat Post request with invalid length value denied with status 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"SS Ban\",\n\t\"type\": \"Boat\",\n\t\"length\": \"12as4\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Boats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "da8aa420-d382-4cc2-97ce-20270f4f3c2c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Get request returns array of Boats greater than length 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.above(1);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Boat 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "651abf52-7ba4-43c7-b885-ac558d59f838",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Get request of recently created Boat is successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Boat's at_sea field is set to true\", function () {",
+							"    var responseData = pm.response.json();",
+							"    pm.expect(responseData.at_sea).to.eql(true)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/boat/{{BoatId1}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boat",
+						"{{BoatId1}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Boat 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b5e7ab2-4852-4b5c-8590-17ba78d38492",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Edit Slip\", function () {",
+							"        pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Edited content matches request\", function () {",
+							"    var responseData = pm.response.json();",
+							"    var requestData = JSON.parse(pm.request.body);",
+							"    ",
+							"    console.log(responseData)",
+							"    console.log(requestData)",
+							"    ",
+							"    for(var prop in requestData){",
+							"        if (prop in responseData){",
+							"            pm.expect(requestData[prop]).to.eql(String(responseData[prop]));",
+							"        }",
+							"    }",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Titanic\",\n\t\"length\": \"80\",\n\t\"type\": \"liner\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/boat/{{BoatId1}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boat",
+						"{{BoatId1}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post First Slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bba7a4dc-f9c5-4126-82d3-af21dcdfe463",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Slip Created\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.response.to.have.status(201);",
+							"    pm.environment.set(\"SlipId1\", jsonData.id)",
+							"});",
+							"",
+							"pm.test(\"Created content matches request\", function () {",
+							"    var responseData = pm.response.json();",
+							"    var requestData = JSON.parse(pm.request.body);",
+							"    ",
+							"    console.log(responseData)",
+							"    console.log(requestData)",
+							"    ",
+							"    for(var prop in requestData){",
+							"        if (prop in responseData){",
+							"            pm.expect(requestData[prop]).to.eql(String(responseData[prop]));",
+							"        }",
+							"    }",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"number\":\"1\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post Second Slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de4647c7-3120-4525-9586-136fbbb037b1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Slip Created\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.response.to.have.status(201);",
+							"    pm.environment.set(\"SlipId2\", jsonData.id)",
+							"});",
+							"",
+							"pm.test(\"Created content matches request\", function () {",
+							"    var responseData = pm.response.json();",
+							"    var requestData = JSON.parse(pm.request.body);",
+							"    ",
+							"    console.log(responseData)",
+							"    console.log(requestData)",
+							"    ",
+							"    for(var prop in requestData){",
+							"        if (prop in responseData){",
+							"            pm.expect(requestData[prop]).to.eql(String(responseData[prop]));",
+							"        }",
+							"    }",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"number\":\"2\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Slips",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "423160fb-6968-4c3a-bf01-a72fceea3426",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Get request returns array of Slips greater than length 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.above(1);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Slip 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "83c97d5b-d11e-4622-a2ca-045261b856e6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Get request of recently created Slip is successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId1}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId1}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b5e7ab2-4852-4b5c-8590-17ba78d38492",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Edit Slip\", function () {",
+							"        pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Edited content matches request\", function () {",
+							"    var responseData = pm.response.json();",
+							"    var requestData = JSON.parse(pm.request.body);",
+							"    ",
+							"    console.log(responseData)",
+							"    console.log(requestData)",
+							"    ",
+							"    for(var prop in requestData){",
+							"        if (prop in responseData){",
+							"            pm.expect(requestData[prop]).to.eql(String(responseData[prop]));",
+							"        }",
+							"    }",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"number\":\"5\",\n\t\"arrival_date\":\"1/1/92\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId1}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId1}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Set Boat 1 to Arrive in Slip 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ac348aee-a815-457b-95a7-290dd76b6109",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Set boat into slip is successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Slip 1 has updated current_boat field set to Boat 1's ID\", function(){",
+							"    var responseData = pm.response.json();",
+							"    pm.expect(responseData.current_boat).to.eql(postman.getEnvironmentVariable(\"BoatId1\"))",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"boat_id\": \"{{BoatId1}}\",\n\t\"arrival_date\":\"2/10/18\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId1}}/current_boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId1}}",
+						"current_boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Check docked boat's at sea value",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11dd5de4-a040-4b05-82c0-5774018cbeb7",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Boat 1's at_sea field is now set to false\", function () {",
+							"    var responseData = pm.response.json();",
+							"    pm.expect(responseData.at_sea).to.eql(false)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId1}}/current_boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId1}}",
+						"current_boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Try to set another boat to arrive in slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7a3ce990-8dd3-4d46-a61e-07a887fa0cf5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Request fails due to slip being occupied\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"boat_id\": \"{{BoatId2}}\",\n\t\"arrival_date\":\"2/10/18\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId1}}/current_boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId1}}",
+						"current_boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "set boat 1 in slip 1 to at sea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "66f23987-19b1-4c23-a4bc-b1ec630bedc2",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Set boat 1 to at sea: Assert Status Code == 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Boat's at_sea field is set to true\", function () {",
+							"    var responseData = pm.response.json();",
+							"    pm.expect(responseData.at_sea).to.eql(true)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"at_sea\":\"true\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/boat/{{BoatId1}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boat",
+						"{{BoatId1}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Check that Slip is Empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a57eb020-bce8-4fb7-b287-b5572c6af8de",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Slip 1's current_boat field is null\", function(){",
+							"    var responseData = pm.response.json();",
+							"    pm.expect(responseData.current_boat).to.eql(null)",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId1}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId1}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put Boat 1 back in Slip 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f641f30-f709-4653-b824-ffe4c5fcd1ea",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Set boat into slip is successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Slip is returned, with updated current_boat field\", function(){",
+							"    var responseData = pm.response.json();",
+							"    pm.expect(responseData.current_boat).to.eql(postman.getEnvironmentVariable(\"BoatId1\"))",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"boat_id\": \"{{BoatId1}}\",\n\t\"arrival_date\":\"2/10/18\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId1}}/current_boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId1}}",
+						"current_boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Try to put Boat 2 in Slip 2 without Boat ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a7c3d18d-c6c2-4fbe-823f-4c5528a22d9c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Set boat into slip unsuccessful due to no boat_id\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"arrival_date\":\"2/11/18\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId2}}/current_boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId2}}",
+						"current_boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Try to put Boat 2 in Slip 2 without arrival date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e3727f69-fd69-48e8-90fc-1af6df2d9d45",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Set boat into slip unsuccessful due to no arrival date\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"boat_id\": \"{{BoatId2}}\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId2}}/current_boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId2}}",
+						"current_boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put Boat 2 in Slip 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a9dc626-7a8f-45a7-b9b8-04189710fa66",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Set boat into slip is successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Slip is returned, with updated current_boat field\", function(){",
+							"    var responseData = pm.response.json();",
+							"    pm.expect(responseData.current_boat).to.eql(postman.getEnvironmentVariable(\"BoatId2\"))",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"boat_id\": \"{{BoatId2}}\",\n\t\"arrival_date\":\"2/11/18\"\n}"
+				},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId2}}/current_boat",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId2}}",
+						"current_boat"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Boat 1 in Slip 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03f6f62e-76dd-4ec4-a2c5-ad178a9f5204",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Delete request of Boat 1 is successful: Status = 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/boat/{{BoatId1}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boat",
+						"{{BoatId1}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Check Slip 1 is empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "70868525-e700-43a3-a83a-1ca833f0fb1c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Slip 1's current_boat field is null due to boat being deleted\", function(){",
+							"    var responseData = pm.response.json();",
+							"    pm.expect(responseData.current_boat).to.eql(null)",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId1}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId1}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Slip 2 which has Boat 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a158da8-a18a-4cc4-8c47-f190d6e4126c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Delete request of Slip 2 is successful\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId2}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId2}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Check that Boat 2 is now at sea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd1db14c-129d-4cea-9692-a81294e82a98",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Boat 2's at_sea field is set to true because Slip 2 was deleted\", function () {",
+							"    var responseData = pm.response.json();",
+							"    pm.expect(responseData.at_sea).to.eql(true)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/boat/{{BoatId2}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boat",
+						"{{BoatId2}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Slip 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "267760ec-c41c-4947-910e-cbfac757a22d",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Delete request of Slip 1 is successful: Status = 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/slip/{{SlipId1}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"slip",
+						"{{SlipId1}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Boat 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b4a59eb-be6e-482d-bc4f-03ae018b51ad",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Delete request of recently created Boat is successful: Status = 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://boatapi-194705.appspot.com/boat/{{BoatId2}}",
+					"protocol": "https",
+					"host": [
+						"boatapi-194705",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boat",
+						"{{BoatId2}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

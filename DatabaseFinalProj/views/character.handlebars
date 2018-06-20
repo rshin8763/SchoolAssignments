@@ -1,0 +1,33 @@
+<script src="character.js"></script>
+
+<div class="navbar navbar-inverse">
+   <div class="navbar-inner">
+     <a class="navbar-brand" href="/">Home</a>
+   </div>
+ </div>
+ <div class="container">
+
+<fieldset>
+<legend> Add an entry :</legend>
+<form>
+
+<div class="form-group">
+<label> First Name:
+<input type= "text" id="fname"> </input>
+</label>
+</div>
+
+<div class="form-group">
+<label> Last Name:
+<input type= "text" id="lname"> </input>
+</label>
+</div>
+
+<input type= "submit" onclick="addEntry()"></input>
+</form>
+</fieldset>
+
+<h1>{{header}}</h1>
+<table id="myTable" class="table"> </table>
+<div hidden id="tName">{{tName}}</div> </div>
+
