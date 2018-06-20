@@ -1,0 +1,104 @@
+RESULTS
+=======
+Using Fine, Dynamic
+Have 24 processors.
+Have 1 threads.
+megaBodies Calculated/sec =    13.29
+Using Fine, Static
+Have 24 processors.
+Have 1 threads.
+megaBodies Calculated/sec =    18.99
+Using Coarse, Dynamic
+Have 24 processors.
+Have 1 threads.
+megaBodies Calculated/sec =    19.40
+Using Coarse, Static
+Have 24 processors.
+Have 1 threads.
+megaBodies Calculated/sec =    20.41
+
+Using Fine, Dynamic
+Have 24 processors.
+Have 2 threads.
+megaBodies Calculated/sec =    19.54
+Using Fine, Static
+Have 24 processors.
+Have 2 threads.
+megaBodies Calculated/sec =    30.06
+Using Coarse, Dynamic
+Have 24 processors.
+Have 2 threads.
+megaBodies Calculated/sec =    38.63
+Using Coarse, Static
+Have 24 processors.
+Have 2 threads.
+megaBodies Calculated/sec =    33.71
+
+Using Fine, Dynamic
+Have 24 processors.
+Have 4 threads.
+megaBodies Calculated/sec =    10.81
+Using Fine, Static
+Have 24 processors.
+Have 4 threads.
+megaBodies Calculated/sec =    26.44
+Using Coarse, Dynamic
+Have 24 processors.
+Have 4 threads.
+megaBodies Calculated/sec =    56.86
+Using Coarse, Static
+Have 24 processors.
+Have 4 threads.
+megaBodies Calculated/sec =    59.82
+
+Using Fine, Dynamic
+Have 24 processors.
+Have 8 threads.
+megaBodies Calculated/sec =     9.25
+Using Fine, Static
+Have 24 processors.
+Have 8 threads.
+megaBodies Calculated/sec =    17.76
+Using Coarse, Dynamic
+Have 24 processors.
+Have 8 threads.
+megaBodies Calculated/sec =    72.66
+Using Coarse, Static
+Have 24 processors.
+Have 8 threads.
+megaBodies Calculated/sec =    74.90
+
+Using Fine, Dynamic
+Have 24 processors.
+Have 16 threads.
+megaBodies Calculated/sec =     6.98
+Using Fine, Static
+Have 24 processors.
+Have 16 threads.
+megaBodies Calculated/sec =    10.54
+Using Coarse, Dynamic
+Have 24 processors.
+Have 16 threads.
+megaBodies Calculated/sec =    73.38
+Using Coarse, Static
+Have 24 processors.
+Have 16 threads.
+megaBodies Calculated/sec =    84.42
+
+Using Fine, Dynamic
+Have 24 processors.
+Have 32 threads.
+megaBodies Calculated/sec =     1.57
+Using Fine, Static
+Have 24 processors.
+Have 32 threads.
+megaBodies Calculated/sec =     1.64
+Using Coarse, Dynamic
+Have 24 processors.
+Have 32 threads.
+megaBodies Calculated/sec =    60.42
+Using Coarse, Static
+Have 24 processors.
+Have 32 threads.
+megaBodies Calculated/sec =    52.29
+
